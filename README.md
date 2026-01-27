@@ -78,15 +78,7 @@ Add this to your main CSS file (e.g., `site.css`):
 }
 ```
 
-### Replace Logo
-
-Replace the logo image path in `_Sidebar.cshtml`:
-
-```razor
-<img id="sidebarLogo" src="~/images/your-logo.png" alt="Logo" class="sidebar-logo" />
-```
-
-## 🔧 Configuration
+## Configurations
 
 ### Admin Section
 
@@ -109,16 +101,4 @@ body.sidebar-collapsed .sidebar {
 body.sidebar-collapsed .main-content {
     margin-left: 0;
 }
-```
-=======
-# navbar-component
-Repo for my nav bar partial component from my personal portfolio website (zaynedoc.dev)
-
-```
-README.md
-NavbarComponent/
-├── _Sidebar.cshtml
-├── _SocialIcons.cshtml
-├── navbar-styles.css
-└── navbar-script.js
 ```
