@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 ﻿# Navbar Component for Razor Pages
 
 Cool sidebar navigation component for Razor Pages projects.<br>
@@ -110,3 +111,16 @@ body.sidebar-collapsed .main-content {
     margin-left: 0;
 }
 ```
+=======
+# navbar-component
+Repo for my nav bar partial component from my personal portfolio website (zaynedoc.dev)
+
+```
+README.md
+NavbarComponent/
+├── _Sidebar.cshtml
+├── _SocialIcons.cshtml
+├── navbar-styles.css
+└── navbar-script.js
+```
+>>>>>>> 04e991460fa657aba32a035b50a4510462254cac
