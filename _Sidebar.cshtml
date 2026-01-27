@@ -1,0 +1,142 @@
+@* 
+    _Sidebar.cshtml - A partial view for the nav sidebar
+    
+    Features:
+    - Funny spinning logo at the top of the sidebar (navbar-script.js; lines 3-9)
+        - Update logo image src (line 8) to change logo
+    - Navigation to pages within domain
+*@
+
+@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+
+@{
+    // Get current page to highlight active nav link
+    var currentPage = ViewContext.RouteData.Values["page"]?.ToString() ?? "";
+}
+
+<div class="sidebar-content">
+    
+    @* ===== LOGO SECTION ===== *@
+    <div class="logo-section">
+        <a asp-page="/Index" class="logo-link">
+            <img id="sidebarLogo" src="/PATH/TO/LOGO" alt="Logo" class="sidebar-logo" />
+        </a>
+    </div>
+    
+    @* ===== NAVIGATION MENU (Centered) ===== *@
+    <nav class="nav-menu">
+        <ul>
+            <li>
+                <a asp-page="/Index" class="nav-link @(currentPage == "/Index" ? "active" : "")">
+                    <i class="bi bi-house-door"></i>
+                    <span>Home</span>
+                </a>
+            </li>
+            <li>
+                <a asp-page="/About" class="nav-link @(currentPage == "/About" ? "active" : "")">
+                    <i class="bi bi-person"></i>
+                    <span>About</span>
+                </a>
+            </li>
+            <li>
+                <a asp-page="/Projects" class="nav-link @(currentPage == "/Projects" ? "active" : "")">
+                    <i class="bi bi-folder"></i>
+                    <span>Projects</span>
+                </a>
+            </li>
+            <li>
+                <a asp-page="/Blog" class="nav-link @(currentPage == "/Blog" || currentPage == "/BlogPost" ? "active" : "")">
+                    <i class="bi bi-journal-text"></i>
+                    <span>Blog</span>
+                </a>
+            </li>
+            <li>
+                <a asp-page="/Contact" class="nav-link @(currentPage == "/Contact" ? "active" : "")">
+                    <i class="bi bi-envelope"></i>
+                    <span>Contact</span>
+                </a>
+            </li>
+
+            @* For authenticated admins, appears under page navigations *@
+            @if (SignInManager.IsSignedIn(User) && User.IsInRole("Admin"))
+            {
+                <li class="nav-divider"></li>
+                <li>
+                    <a asp-page="/Admin/Index" class="nav-link admin-link @(currentPage?.StartsWith("/Admin") == true ? "active" : "")">
+                        <i class="bi bi-speedometer2"></i>
+                        <span>Admin</span>
+                    </a>
+                </li>
+            }
+        </ul>
+    </nav>
+    
+    @* ===== AUTH LINKS ===== *@
+    <div class="auth-links">
+        @if (SignInManager.IsSignedIn(User))
+        {
+            <form asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="/" method="post">
+                <button type="submit" class="auth-link logout-link">
+                    <i class="bi bi-box-arrow-right"></i>
+                    <span>Logout</span>
+                </button>
+            </form>
+        }
+        else
+        {
+            <a asp-area="Identity" asp-page="/Account/Login" class="auth-link">
+                <i class="bi bi-box-arrow-in-right"></i>
+                <span>Login</span>
+            </a>
+        }
+    </div>
+    
+    @* ===== SOCIAL LINKS ===== *@
+    <partial name="_SocialIcons" />
+    
+</div>
+
+<style>
+    .nav-divider {
+        border-top: 1px solid rgba(255, 255, 255, 0.08);
+        margin: 0.75rem 0;
+        list-style: none;
+    }
+    
+    .admin-link {
+        color: var(--accent-primary, #6800FD) !important;
+    }
+    
+    .admin-link.active {
+        color: var(--accent-primary, #6800FD) !important;
+    }
+    
+    .auth-links {
+        padding: 0.5rem 1rem;
+    }
+    
+    .auth-link {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.5rem 0.75rem;
+        color: var(--text-secondary, #aaa);
+        text-decoration: none;
+        font-size: 0.9rem;
+        border: none;
+        background: none;
+        cursor: pointer;
+        transition: color 0.2s ease;
+    }
+    
+    .auth-link:hover {
+        color: var(--text-primary, #fff);
+    }
+    
+    .logout-link {
+        width: 100%;
+        justify-content: flex-start;
+    }
+</style>
