@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 ﻿# Navbar Component for Razor Pages
 
 Cool sidebar navigation component for Razor Pages projects.<br>
@@ -123,4 +122,3 @@ NavbarComponent/
 ├── navbar-styles.css
 └── navbar-script.js
 ```
->>>>>>> 04e991460fa657aba32a035b50a4510462254cac
