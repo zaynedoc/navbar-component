@@ -6,12 +6,12 @@ This repo discusses dependency-integration and some minor customizations regardi
 ## What's Included
 
 ```
-NavBarComponent/
+README.md                # This file
+component/
 ├── _Sidebar.cshtml          # Main sidebar navigation partial
 ├── _SocialIcons.cshtml      # Social icons component
 ├── navbar-styles.css        # All required CSS styles
-├── navbar-script.js         # JavaScript for animations
-└── README.md                # This file
+└── navbar-script.js         # JavaScript for animations
 ```
 
 ## Installation
